@@ -1,5 +1,3 @@
 ...
 toegevoegd met WebIDE
-
-
 tes
