@@ -1,0 +1,29 @@
+{
+  "generation": [
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationProject",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 06 May 2015 12:48:34 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 06 May 2015 13:08:11 GMT"
+    }
+  ],
+  "translation": {
+    "supportedLanguages": "en,fr",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "hcpdeploy": {
+    "account": "s0012585013trial",
+    "name": "fluxsysdemoapp",
+    "lastVersionWeTriedToDeploy": "1"
+  },
+  "deploy": {
+    "destination": "saphanabak",
+    "name": "ZFLUXSYSAPP01"
+  }
+}
