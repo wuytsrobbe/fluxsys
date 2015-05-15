@@ -13,6 +13,40 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 	 * @memberOf be.ordina.sap.view.MaterialListView
 	 */
 	createContent: function(oController) {
+
+		var materialTemplate = new sap.m.ColumnListItem({
+			id: 'materialTemplate',
+			cells: [
+                new sap.m.Image({
+					src: "{image}"
+				}),
+				new sap.m.Text({
+					text: "{materialNumber}"
+				}),
+				new sap.m.Text({
+					text: "{description}"
+				}),
+				new sap.m.Text({
+					text: "{type}"
+				}),
+				new sap.m.Text({
+					text: "{hierarchy}"
+				}),
+				new sap.m.Text({
+					text: "{steelQuality}"
+				}),
+				new sap.m.Text({
+					text: "{measures}"
+				}),
+				new sap.m.Text({
+					text: "{stock}"
+				})
+											 ]
+		});
+		
+		var materialSorters= {};
+		var materialFilters= {};
+
 		return new sap.m.Page({
 			title: "{i18n>appTitle}",
 			content: [
@@ -85,8 +119,62 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							visibleInFilterBar: false
 						})
 		  ]
-				})
-			    ]
+				}),
+				new sap.m.Table('materialTable', {
+					headerToolbar: new sap.m.Toolbar({
+						content: [
+					        new sap.m.Title({
+								text: 'Items' //TO DO formatter functie schrijven this.getItems.length
+							}),
+							new sap.m.ToolbarSpacer(),
+							new sap.m.SearchField('materialSearch', {
+							   placeholder: '{i18n>materialNumber}',
+							   search: oController.handleSearch,
+							   width: '30%'
+							})
+					        ]
+					}),
+					columns: [
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>image}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>materialNumber}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>description}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>type}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>hierarchy}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>steelQuality}"
+							})
+						}),
+																						new sap.m.Column({
+							header: new sap.m.Text({
+								text: "{i18n>measures}"
+							})
+						}),
+																						new sap.m.Column()
+																						]
+				}).bindItems('/material', materialTemplate, materialSorters, materialFilters)
+			    ],
+			footer: new sap.m.Bar()
 		});
 	}
 
