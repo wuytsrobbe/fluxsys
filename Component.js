@@ -19,8 +19,8 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 		config: {
 			resourceBundle: "i18n/messageBundle.properties",
 			serviceConfig: {
-				name: "",
-				serviceUrl: ""
+				name: "Lux",
+				serviceUrl: "https://moberp.net-portail.com/sap/opu/odata/sap/Z_FLUXYS_DEMO_1_SRV/"
 			}
 		},
 		routing: {
@@ -66,8 +66,9 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
         //this._routeMatchedHandler = new sap.m.routing.RouteMatchedHandler(this.getRouter(), this._bRouterCloseDialogs);
 
         // create oData model
-        //TODO nog te schrijven
-        //this._initODataModel(sServiceUrl);
+        var  oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
+        this.setModel(oDataModel);
+        sap.ui.getCore().setModel(oDataModel);
 
         // set i18n model
         var i18nModel = new sap.ui.model.resource.ResourceModel({

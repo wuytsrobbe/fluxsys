@@ -172,7 +172,7 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 						}),
 																						new sap.m.Column()
 																						]
-				}).bindItems('/material', materialTemplate, materialSorters, materialFilters)
+				}).bindItems('/MaterialSet', materialTemplate, materialSorters, materialFilters)
 			    ],
 			footer: new sap.m.Bar()
 		});
