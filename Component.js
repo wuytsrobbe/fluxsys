@@ -20,7 +20,7 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 			resourceBundle: "i18n/messageBundle.properties",
 			serviceConfig: {
 				name: "Hana",
-				serviceUrl: "/sap/opu/odata/sap/ZFLUXSYS_SRV/"
+				serviceUrl: "http://saphanabak:80/sap/opu/odata/SAP/ZFLUXSYS_SRV/"
 			}
 		},
 		routing: {
@@ -69,6 +69,7 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
         var  oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
         this.setModel(oDataModel);
         sap.ui.getCore().setModel(oDataModel);
+        
 
         // set i18n model
         var i18nModel = new sap.ui.model.resource.ResourceModel({
