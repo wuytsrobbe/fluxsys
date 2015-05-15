@@ -19,6 +19,15 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
-    }
+    },
+    {
+  "path": "/sap/opu/odata/sap/ZFLUXSYS_SRV/",
+  "target": {
+   "type": "destination",
+   "name": "oData",
+   "entryPath": "/sap/opu/odata/sap/ZFLUXSYS_SRV/"
+  },
+  "description": "Target OData system"
+}
   ]
 }
