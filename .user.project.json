@@ -1,6 +1,18 @@
 {
   "run": [
     {
+      "filePath": "/fluxsys/index.html",
+      "previewMode": 0,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "urlParameters": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 1108777,
+        "displayName": "New Web Application"
+      }
+    },
+    {
       "filePath": "/FluxsysDemoApp/index.html",
       "previewMode": 0,
       "dataMode": 1,
