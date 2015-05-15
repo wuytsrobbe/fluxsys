@@ -19,8 +19,8 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 		config: {
 			resourceBundle: "i18n/messageBundle.properties",
 			serviceConfig: {
-				name: "Lux",
-				serviceUrl: "https://moberp.net-portail.com/sap/opu/odata/sap/Z_FLUXYS_DEMO_1_SRV/"
+				name: "Hana",
+				serviceUrl: "https://ordsaphana01.ordina.belgium:50003/sap/opu/odata/sap/ZFLUXSYS_SRV/"
 			}
 		},
 		routing: {
