@@ -19,8 +19,8 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 		config: {
 			resourceBundle: "i18n/messageBundle.properties",
 			serviceConfig: {
-				name: "Hana",
-				serviceUrl: "http://saphanabak:80/sap/opu/odata/SAP/ZFLUXSYS_SRV/"
+				name: "ZFLUXSYS_SRV",
+				serviceUrl: "https://hana1:443/sap/opu/odata/sap/ZFLUXSYS_SRV/"
 			}
 		},
 		routing: {
@@ -66,10 +66,20 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
         //this._routeMatchedHandler = new sap.m.routing.RouteMatchedHandler(this.getRouter(), this._bRouterCloseDialogs);
 
         // create oData model
+        jQuery.sap.log.info("Binding data model to remote service");
         var  oDataModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
         this.setModel(oDataModel);
         sap.ui.getCore().setModel(oDataModel);
-        
+        jQuery.sap.log.info("Model set");
+        oDataModel.read("/MaterialSet", {
+            succes: function(oData, response) {
+                console.log(oData);
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
 
         // set i18n model
         var i18nModel = new sap.ui.model.resource.ResourceModel({

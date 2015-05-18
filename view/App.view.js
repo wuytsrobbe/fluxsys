@@ -13,7 +13,7 @@ sap.ui.jsview("be.ordina.sap.view.App", {
 	* @memberOf be.ordina.gevr.view.App
 	*/ 
 	createContent : function(oController) {
-		return new sap.m.Shell(("mainShell"), {
+		return new sap.m.Shell({
 		    title: "Fluxsys Demo"
 		}).setApp(new sap.m.App("app", {
 		    

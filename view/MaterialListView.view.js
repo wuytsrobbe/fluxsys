@@ -43,9 +43,9 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 				})
 											 ]
 		});
-		
-		var materialSorters= {};
-		var materialFilters= {};
+
+		var materialSorters = {};
+		var materialFilters = {};
 
 		return new sap.m.Page({
 			title: "{i18n>appTitle}",
@@ -128,9 +128,9 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							}),
 							new sap.m.ToolbarSpacer(),
 							new sap.m.SearchField('materialSearch', {
-							   placeholder: '{i18n>materialNumber}',
-							   search: oController.handleSearch,
-							   width: '30%'
+								placeholder: '{i18n>materialNumber}',
+								search: oController.handleSearch,
+								width: '30%'
 							})
 					        ]
 					}),
@@ -172,7 +172,12 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 						}),
 																						new sap.m.Column()
 																						]
-				}).bindItems('/MaterialSet', materialTemplate, materialSorters, materialFilters)
+				}).bindItems({
+					path: "/MaterialSet",
+					template: materialTemplate
+					//sorter: materialSorters,
+					//filter: materialFilters
+				})
 			    ],
 			footer: new sap.m.Bar()
 		});

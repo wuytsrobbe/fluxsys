@@ -2,20 +2,24 @@ sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
 
 
  handleSearch: function(oEvent) {
-     alert("meow");
+  
     var sValue = oEvent.getParameter("value");
-    var oFilter = new sap.ui.model.Filter("materialNumber", sap.ui.model.FilterOperator.Contains, sValue);
-    var oBinding = oEvent.getSource().getBinding("items");
-    oBinding.filter([oFilter]);
-  }
+    //var oFilter = new sap.ui.model.Filter("materialNumber", sap.ui.model.FilterOperator.Contains, sValue);
+    //var oBinding = oEvent.getSource().getBinding("items"); //doesn't work because the source = sap.m.SearchField
+    //oBinding.filter(oFilter);
+    jQuery.sap.log.info(oEvent.getSource());
+  },
 /**
 * Called when a controller is instantiated and its View controls (if available) are already created.
 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 * @memberOf be.ordina.sap.view.MaterialListView
 */
-//	onInit: function() {
-//
-//	},
+	onInit: function() {
+	    
+	    
+	   
+
+	}
 
 /**
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
