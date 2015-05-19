@@ -21,7 +21,7 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 					src: "{image}"
 				}),
 				new sap.m.Text({
-					text: "{materialNumber}"
+					text: "{number}"
 				}),
 				new sap.m.Text({
 					text: "{description}"
@@ -33,10 +33,10 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 					text: "{hierarchy}"
 				}),
 				new sap.m.Text({
-					text: "{steelQuality}"
+					text: "{quality}"
 				}),
 				new sap.m.Text({
-					text: "{measures}"
+					text: "{diameter}" + " " + "{diameter_unit}"
 				}),
 				new sap.m.Text({
 					text: "{stock}"

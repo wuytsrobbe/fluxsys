@@ -23,7 +23,7 @@
     "lastVersionWeTriedToDeploy": "1"
   },
   "deploy": {
-    "destination": "saphanabak",
+    "destination": "HA1",
     "name": "ZFLUXSYSAPP01"
   }
 }
