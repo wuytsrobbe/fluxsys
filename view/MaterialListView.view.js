@@ -44,8 +44,7 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 											 ]
 		});
 
-		var materialSorters = {};
-		var materialFilters = {};
+		
 
 		return new sap.m.Page({
 			title: "{i18n>appTitle}",
@@ -55,13 +54,15 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 			        new sap.ui.comp.filterbar.FilterGroupItem("fgiMaterialDesc", {
 							groupTitle: "{i18n>material}",
 							groupName: "material",
-							name: "fgiMaterial",
+							name: "fgiDescription",
 							label: "{i18n>materialDesc}",
-							control: new sap.m.Input("inpMaterial", {
-								name: "inpMaterial"
+							control: new sap.m.Input("inpDescription", {
+								name: "inpDescription",
+								change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
 							}),
-							visibleInFilterBar: false
-
+							visibleInFilterBar: true
 						}),
 				    new sap.ui.comp.filterbar.FilterGroupItem("fgiMaterialNumber", {
 							groupTitle: "{i18n>material}",
@@ -69,16 +70,23 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							name: "fgiMaterialNumber",
 							label: "{i18n>materialNumber}",
 							control: new sap.m.Input("inpMaterialNumber", {
-								name: "inpMaterialNumber"
+								name: "inpMaterialNumber",
+								change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
 							}),
-							visibleInFilterBar: false
+							visibleInFilterBar: true
 						}),
 		            new sap.ui.comp.filterbar.FilterGroupItem("fgiMaterialType", {
 							groupTitle: "{i18n>type}",
 							groupName: "type",
 							name: "fgiMaterialType",
 							label: "{i18n>materialType}",
-							control: new sap.m.Input("inpMaterialType"),
+							control: new sap.m.Input("inpMaterialType", {
+							    change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
+							}),
 							visibleInAdvancedArea: true,
 							visibleInFilterBar: false
 						}),
@@ -87,7 +95,11 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							groupName: "type",
 							name: "fgiMaterialHierarchy",
 							label: "{i18n>hierarchy}",
-							control: new sap.m.Input("inpMaterialHierarchy"),
+							control: new sap.m.Input("inpMaterialHierarchy", {
+							    change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
+							}),
 							visibleInAdvancedArea: true,
 							visibleInFilterBar: false
 						}),
@@ -96,7 +108,11 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							groupName: "detail",
 							name: "fgiDetailSteelQuality",
 							label: "{i18n>steelQuality}",
-							control: new sap.m.Input("inpDetailSteelQuality"),
+							control: new sap.m.Input("inpDetailSteelQuality", {
+							    change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
+							}),
 							visibleInAdvancedArea: true,
 							visibleInFilterBar: false
 						}),
@@ -105,7 +121,11 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							groupName: "detail",
 							name: "fgiDetailDiameter",
 							label: "{i18n>diameter}",
-							control: new sap.m.Input("inpDetailDiameter"),
+							control: new sap.m.Input("inpDetailDiameter", {
+							    change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
+							}),
 							visibleInAdvancedArea: true,
 							visibleInFilterBar: false
 						}),
@@ -114,13 +134,17 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 							groupName: "detail",
 							name: "fgiDetailLength",
 							label: "{i18n>length}",
-							control: new sap.m.Input("inpDetailLength"),
+							control: new sap.m.Input("inpDetailLength", {
+							    change: function(oEvent) {
+								    oController.onFilter(oEvent);
+								}
+							}),
 							visibleInAdvancedArea: true,
 							visibleInFilterBar: false
 						})
 		  ]
 				}),
-				new sap.m.Table('materialTable', {
+				new sap.m.Table("materialTable", {
 					headerToolbar: new sap.m.Toolbar({
 						content: [
 					        new sap.m.Title({
@@ -174,9 +198,9 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 																						]
 				}).bindItems({
 					path: "/MaterialSet",
-					template: materialTemplate
+					template: materialTemplate,
 					//sorter: materialSorters,
-					//filter: materialFilters
+					filter: oController.materialFilters
 				})
 			    ],
 			footer: new sap.m.Bar()

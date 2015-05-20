@@ -44,6 +44,10 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 
 	init: function() {
 	
+	    //for development only
+	    jQuery.sap.log.setLevel(jQuery.sap.log.Level.DEBUG);
+	    jQuery.sap.log.info("Debug level logging set");
+	    
 		sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
 		var deviceModel = new sap.ui.model.json.JSONModel({
 			isTouch: sap.ui.Device.support.touch,
@@ -71,15 +75,8 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
         this.setModel(oDataModel);
         sap.ui.getCore().setModel(oDataModel);
         jQuery.sap.log.info("Model set");
-        oDataModel.read("/MaterialSet", {
-            succes: function(oData, response) {
-                console.log(oData);
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+        
+        
 
         // set i18n model
         var i18nModel = new sap.ui.model.resource.ResourceModel({

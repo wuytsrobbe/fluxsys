@@ -1,8 +1,12 @@
 sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
-
+        
+	    
+	    descriptionFilter: new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, ""),
+	    materialSorters: [],
+	    materialFilters: [],
 
  handleSearch: function(oEvent) {
-  
+    
     var sValue = oEvent.getParameter("value");
     //var oFilter = new sap.ui.model.Filter("materialNumber", sap.ui.model.FilterOperator.Contains, sValue);
     //var oBinding = oEvent.getSource().getBinding("items"); //doesn't work because the source = sap.m.SearchField
@@ -15,11 +19,35 @@ sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
 * @memberOf be.ordina.sap.view.MaterialListView
 */
 	onInit: function() {
-	    
+	    this.materialFilters.push(this.descriptionFilter);
 	    
 	   
 
-	}
+	},
+	
+/**
+ * Handles input on a filter
+ * 
+ */
+    onFilter: function(oEvent) {
+        console.log(this);
+        jQuery.sap.log.debug("Change event on filterbar" + oEvent.getSource().getName());
+        if(oEvent.getSource().getName() === "inpDescription") {
+            this.descriptionFilter = new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
+           
+            console.log(this.descriptionFilter);
+            var oTable = sap.ui.getCore().byId("materialTable"); 
+            //binding.refresh();
+            console.log(this.materialFilters);
+            oTable.bindItems({
+					path: "/MaterialSet",
+					template: sap.ui.getCore().byId("materialTemplate"),
+					sorter: this.materialSorters,
+					filter: this.materialFilters
+			});
+        }
+        
+    }
 
 /**
 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
