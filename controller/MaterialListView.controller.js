@@ -33,7 +33,7 @@ sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
         console.log(this);
         jQuery.sap.log.debug("Change event on filterbar" + oEvent.getSource().getName());
         if(oEvent.getSource().getName() === "inpDescription") {
-            this.descriptionFilter = new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
+            this.materialFilters[0] = new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
            
             console.log(this.descriptionFilter);
             var oTable = sap.ui.getCore().byId("materialTable"); 
