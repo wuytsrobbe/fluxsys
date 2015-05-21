@@ -1,0 +1,11 @@
+.inStock {
+	color: green !important;
+}
+
+.outStock {
+	color: red !important;
+}
+
+.sapMList {
+  margin: 1rem;
+}

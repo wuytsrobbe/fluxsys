@@ -21,7 +21,6 @@ sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
 */
 	onInit: function() {
 	    this.materialFilters.push(this.descriptionFilter);
-	    
 	   
 
 	},

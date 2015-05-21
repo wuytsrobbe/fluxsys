@@ -20,7 +20,18 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
                 new sap.m.Image({
 					src: "{imgurl}",
 					width: '75px',
-					height: '75px'
+					height: '75px',
+					press: function(){
+					    var that = this;
+					    new sap.m.Popover({
+					        showHeader: false,
+					        content: [
+					            new sap.m.Image({
+					                src: that.getProperty('src')
+					            })
+					            ]
+					    }).openBy(this);
+					}
 				}),
 				new sap.m.Text({
 					text: "{number}"
@@ -32,18 +43,30 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 					text: "{type}"
 				}),
 				new sap.m.Text({
-					text: "{hierarchy}"
-				}),
-				new sap.m.Text({
 					text: "{quality}"
 				}),
 				new sap.m.Text({
-					text: "{diameter}" + " " + "{diameter_unit}"
+					text: "Diameter:" +  "{diameter}" + " " + "{diameter_unit}" + "\n" + "Length: " + "{length}" + " " + "{length_unit}" + "\n" + "Wall-thickness: " + "{wall_thickness}" + "{wall_unit}" 
 				}),
 				new sap.m.Text({
-					text: "{stock}"
+					text: {
+								parts : [ {
+									path : 'stock'
+								} ],
+								formatter : function(
+										stock) {
+									if (stock > 0) {
+									    this.addStyleClass('inStock');
+										return "in stock";
+									} else {
+									     this.addStyleClass('outStock');
+										return "out of stock";
+									}
+
+								}
+							}
 				})
-											 ]
+			]
 		});
 
 		
@@ -147,16 +170,11 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 		  ]
 				}),
 				new sap.m.Table("materialTable", {
+				    width: '100%',
 					headerToolbar: new sap.m.Toolbar({
 						content: [
 					        new sap.m.Title({
 								text: 'Items' //TO DO formatter functie schrijven this.getItems.length
-							}),
-							new sap.m.ToolbarSpacer(),
-							new sap.m.SearchField('materialSearch', {
-								placeholder: '{i18n>materialNumber}',
-								search: oController.handleSearch,
-								width: '30%'
 							})
 					        ]
 					}),
@@ -179,11 +197,6 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 																						new sap.m.Column({
 							header: new sap.m.Text({
 								text: "{i18n>type}"
-							})
-						}),
-																						new sap.m.Column({
-							header: new sap.m.Text({
-								text: "{i18n>hierarchy}"
 							})
 						}),
 																						new sap.m.Column({

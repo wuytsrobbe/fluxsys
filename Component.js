@@ -9,7 +9,7 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
 		name: "Material Search",
 		version: "0.1",
 		dependencies: {
-			libs: ["sap.m", "sap.ui.layout", "sap.ui.comp"]
+			libs: ["sap.m", "sap.ui.layout", "sap.ui.ux3", "sap.ui.comp"]
 		},
 		
 		rootView: {
@@ -76,7 +76,7 @@ sap.ui.core.UIComponent.extend("be.ordina.sap.Component", {
         sap.ui.getCore().setModel(oDataModel);
         jQuery.sap.log.info("Model set");
         
-        
+        jQuery.sap.includeStyleSheet("css/customStyle.css", "style.css");
 
         // set i18n model
         var i18nModel = new sap.ui.model.resource.ResourceModel({
