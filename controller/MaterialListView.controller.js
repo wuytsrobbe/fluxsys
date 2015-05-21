@@ -1,7 +1,8 @@
 sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
         
 	    
-	    descriptionFilter: new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, ""),
+	    descriptionFilter: new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.EQ, ""),
+	    materialNumberFilter: new sap.ui.model.Filter("number", sap.ui.model.FilterOperator.EQ, ""),
 	    materialSorters: [],
 	    materialFilters: [],
 
@@ -33,19 +34,16 @@ sap.ui.controller("be.ordina.sap.controller.MaterialListView", {
         console.log(this);
         jQuery.sap.log.debug("Change event on filterbar" + oEvent.getSource().getName());
         if(oEvent.getSource().getName() === "inpDescription") {
-            this.materialFilters[0] = new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
-           
-            console.log(this.descriptionFilter);
-            var oTable = sap.ui.getCore().byId("materialTable"); 
-            //binding.refresh();
-            console.log(this.materialFilters);
-            oTable.bindItems({
-					path: "/MaterialSet",
-					template: sap.ui.getCore().byId("materialTemplate"),
-					sorter: this.materialSorters,
-					filter: this.materialFilters
-			});
+            this.descriptionFilter = new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
+            this.materialFilters[0] = this.descriptionFilter;
+        } else if (oEvent.getSource().getName() === "inpMaterialNumber"){
+            this.materialNumberFilter = new sap.ui.model.Filter("number", sap.ui.model.FilterOperator.Contains, oEvent.getSource().getValue());
+            this.materialFilters[1] = this.materialNumberFilter;
         }
+        console.log(this.materialFilters);
+            
+            var oTable = sap.ui.getCore().byId("materialTable"); 
+            oTable.bindAggregation("items","/MaterialSet", sap.ui.getCore().byId("materialTemplate"), false, this.materialFilters);
         
     }
 

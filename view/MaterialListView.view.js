@@ -18,7 +18,9 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 			id: 'materialTemplate',
 			cells: [
                 new sap.m.Image({
-					src: "{image}"
+					src: "{imgurl}",
+					width: '75px',
+					height: '75px'
 				}),
 				new sap.m.Text({
 					text: "{number}"
@@ -198,9 +200,9 @@ sap.ui.jsview("be.ordina.sap.view.MaterialListView", {
 																						]
 				}).bindItems({
 					path: "/MaterialSet",
-					template: materialTemplate,
+					template: materialTemplate
 					//sorter: materialSorters,
-					filter: oController.materialFilters
+//					filter: oController.materialFilters
 				})
 			    ],
 			footer: new sap.m.Bar()
